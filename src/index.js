@@ -1,37 +1,11 @@
-const redux = require("redux")
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import {Provider} from 'react-redux'
+import './index.css';
+import App from './App';
+import store from './store';
 
-
-const counterReducer = (state = {counter : 0},action) => {
-
-    if (action.type === "DECREMENT") return {
-        counter : state.counter - 1
-    }
-    if (action.type === "DECREMENT2") return {
-        counter : state.counter - 2
-    }
-    if (action.type === "INCREMENT2") return {
-        counter : state.counter + 2
-    }
-     return {
-        counter : state.counter + 1
-    }
-}
-
-const store = redux.createStore(counterReducer)
-console.log(store.getState())
-
-const counterSubscriber = () => {
-    const latestState = store.getState()
-    console.log(latestState)
-}
-
-store.subscribe(counterSubscriber)
-
-store.dispatch({type : 'INCREMENT'})
-store.dispatch({type : 'INCREMENT'})
-store.dispatch({type : 'INCREMENT'})
-store.dispatch({type : 'INCREMENT'})
-store.dispatch({type : 'INCREMENT'})
-store.dispatch({type : 'INCREMENT2'})
-store.dispatch({type : 'DECREMENT2'})
-store.dispatch({type : 'DECREMENT'})
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Provider store={store}>
+    <App />
+    </Provider>);
